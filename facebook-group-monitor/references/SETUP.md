@@ -18,8 +18,10 @@ python3 -m venv .venv
 source .venv/bin/activate
 
 # Install dependencies
-pip install playwright playwright-stealth
+pip install playwright playwright-stealth Pillow
 ```
+
+> **Pillow** is required for stitching viewport screenshots into a single feed strip image.
 
 ### 2. Install Chromium browser
 
@@ -81,6 +83,8 @@ Adjust the schedule as needed. `0 */4 8-22 * *` = every 4 hours between 8am-10pm
 | Screenshots not readable by agent | Use `--shots-dir` pointing to agent workspace |
 | `playwright not found` | Activate venv or install: `pip install playwright` |
 | `chromium not found` | Run: `playwright install chromium` |
+| `ModuleNotFoundError: PIL` | Install Pillow: `pip install Pillow` |
+| Feed screenshot missing / no `feed_screenshot` key | Pillow not installed or import error — check Python env |
 
 ## Alternative venv location
 
