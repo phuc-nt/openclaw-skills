@@ -10,7 +10,7 @@ Published on [ClawHub](https://clawhub.ai) and mirrored here for backup & offlin
 | Skill | Description | Version |
 |-------|-------------|---------|
 | [facebook-group-monitor](./facebook-group-monitor/) | Monitor Facebook groups with Playwright browser automation. Scrapes new posts, captures a stitched **feed strip** screenshot (1 image covers full feed) for efficient LLM vision analysis. | 1.3.0 |
-| [goodreads](./goodreads/) | Full Goodreads integration: read shelves/search/book details via RSS + write (rate, shelf, review, edit dates, progress) via Playwright. | 1.0.0 |
+| [goodreads](./goodreads/) | Full Goodreads integration: read shelves/search/book details via RSS + write (rate, shelf, review, edit dates, progress) via Playwright. | 1.1.0 |
 
 ---
 

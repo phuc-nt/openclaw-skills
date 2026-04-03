@@ -429,7 +429,13 @@ async def cmd_shelf(args):
 
 # ── EDIT (dates, review, rating) ───────────────────────────────────────────────
 async def _navigate_to_edit_page(page, book_id: str):
-    """Navigate to /review/edit/<book_id> and verify the page loads."""
+    """Navigate to /review/edit/<book_id> and verify the page loads.
+
+    Goodreads may redirect:
+      - /review/edit/<id> → for books with existing reviews
+      - /review/new/<id>  → for books shelved but no review yet
+    Both are valid review form pages.
+    """
     url = f"{GOODREADS_BASE}/review/edit/{book_id}"
     await page.goto(url, wait_until="domcontentloaded")
     await page.wait_for_timeout(3000)
@@ -437,10 +443,13 @@ async def _navigate_to_edit_page(page, book_id: str):
     if "sign_in" in page.url or "sign_up" in page.url:
         raise Exception("Session expired. Run: goodreads-writer.py login")
 
-    # Verify it's the edit page
-    title = await page.title()
-    if "Edit Review" not in title and "edit" not in page.url:
-        raise Exception(f"Cannot access edit page. Book not shelved? URL: {page.url}")
+    # Verify it's a review form page (edit or new)
+    current_url = page.url
+    is_review_page = "/review/edit" in current_url or "/review/new" in current_url
+    if not is_review_page:
+        title = await page.title()
+        if "Review" not in title and "review" not in current_url:
+            raise Exception(f"Cannot access edit page. Book not shelved? URL: {current_url}")
 
 
 async def cmd_edit(args):
