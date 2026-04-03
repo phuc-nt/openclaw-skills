@@ -1,0 +1,23 @@
+# Recipe: Email Triage
+
+Classify unread emails into Urgent / Action / FYI / Noise twice daily.
+
+## Cron Job
+
+```json
+{
+  "id": "email-triage",
+  "agentId": "personal",
+  "name": "Email Triage - 9AM & 3PM",
+  "enabled": true,
+  "schedule": { "kind": "cron", "expr": "0 9,15 * * *", "tz": "Your/Timezone" },
+  "sessionTarget": "isolated",
+  "wakeMode": "now",
+  "payload": {
+    "kind": "agentTurn",
+    "message": "Classify unread emails. Run:\n\n1. gws gmail +triage --max 20\n\nClassify each into:\n- 🚨 Urgent: needs reply today\n- 📋 Action: needs handling, not urgent\n- 📰 FYI: newsletters, notifications\n- 🗑 Noise: spam, irrelevant promotions\n\nFormat as Telegram message. Urgent first. If inbox empty: send '📧 Inbox clear!'",
+    "timeoutSeconds": 180
+  },
+  "delivery": { "mode": "announce", "channel": "telegram", "to": "YOUR_ID", "bestEffort": true }
+}
+```
