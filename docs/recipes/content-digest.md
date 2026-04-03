@@ -1,3 +1,5 @@
+[🇻🇳 Tiếng Việt](../vi/recipes/content-digest.md)
+
 # Recipe: Content Digest (Reddit + YouTube)
 
 Automated daily digest of Reddit posts and YouTube videos, translated and summarized.

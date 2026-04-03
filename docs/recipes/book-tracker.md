@@ -1,3 +1,5 @@
+[🇻🇳 Tiếng Việt](../vi/recipes/book-tracker.md)
+
 # Recipe: Goodreads Book Tracker
 
 Rate, review, and track reading via Telegram commands.

@@ -1,3 +1,5 @@
+[🇻🇳 Tiếng Việt](vi/07-multi-agent.md)
+
 # Multi-Agent Design
 
 When to use one agent vs many, and how they communicate.

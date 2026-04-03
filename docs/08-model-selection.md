@@ -1,3 +1,5 @@
+[🇻🇳 Tiếng Việt](vi/08-model-selection.md)
+
 # Model Selection
 
 Choose the right model for cost, quality, and reliability.

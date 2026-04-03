@@ -1,3 +1,5 @@
+[🇻🇳 Tiếng Việt](vi/06-cron-jobs.md)
+
 # Cron Jobs & Scheduling
 
 Automate recurring tasks — morning briefings, email triage, content digests.

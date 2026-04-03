@@ -1,3 +1,5 @@
+[🇻🇳 Tiếng Việt](vi/03-first-agent.md)
+
 # Your First Agent
 
 ## Step 1: Write SOUL.md

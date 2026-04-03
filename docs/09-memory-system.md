@@ -1,3 +1,5 @@
+[🇻🇳 Tiếng Việt](vi/09-memory-system.md)
+
 # Memory System
 
 Give your agent persistent memory across sessions using Kioku-lite.

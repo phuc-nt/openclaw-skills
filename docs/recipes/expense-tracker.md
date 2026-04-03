@@ -1,3 +1,5 @@
+[🇻🇳 Tiếng Việt](../vi/recipes/expense-tracker.md)
+
 # Recipe: Expense Tracker
 
 Track expenses via natural language Telegram messages.

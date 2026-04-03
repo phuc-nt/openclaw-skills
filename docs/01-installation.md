@@ -1,3 +1,5 @@
+[🇻🇳 Tiếng Việt](vi/01-installation.md)
+
 # Prerequisites & Installation
 
 ## Hardware

@@ -1,3 +1,5 @@
+[🇻🇳 Tiếng Việt](vi/04-google-workspace.md)
+
 # Google Workspace Integration
 
 Connect your agent to Gmail, Calendar, Drive, Sheets, Docs, and Tasks.

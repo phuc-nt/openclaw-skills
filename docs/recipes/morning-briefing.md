@@ -1,3 +1,5 @@
+[🇻🇳 Tiếng Việt](../vi/recipes/morning-briefing.md)
+
 # Recipe: Morning Briefing
 
 Daily summary of calendar, email, tasks, and reading at 7 AM.

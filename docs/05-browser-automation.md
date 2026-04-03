@@ -1,3 +1,5 @@
+[🇻🇳 Tiếng Việt](vi/05-browser-automation.md)
+
 # Browser Automation
 
 Use Playwright to automate websites that don't have APIs — Goodreads, Facebook, etc.

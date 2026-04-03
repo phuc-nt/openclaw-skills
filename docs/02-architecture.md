@@ -1,3 +1,5 @@
+[🇻🇳 Tiếng Việt](vi/02-architecture.md)
+
 # Architecture Overview
 
 ## How OpenClaw Works

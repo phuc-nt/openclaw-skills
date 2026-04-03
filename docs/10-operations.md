@@ -1,3 +1,5 @@
+[🇻🇳 Tiếng Việt](vi/10-operations.md)
+
 # Operational Playbook
 
 Day-to-day monitoring, debugging, and maintenance.

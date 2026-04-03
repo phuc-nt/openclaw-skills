@@ -1,3 +1,5 @@
+[🇻🇳 Tiếng Việt](../vi/recipes/email-triage.md)
+
 # Recipe: Email Triage
 
 Classify unread emails into Urgent / Action / FYI / Noise twice daily.
