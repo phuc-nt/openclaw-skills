@@ -1,5 +1,8 @@
 [🇻🇳 Tiếng Việt](vi/11-agent-profiles.md)
 
+[← Home](index.md) · [Installation](01-installation.md) · [Architecture](02-architecture.md) · [First Agent](03-first-agent.md) · [Google](04-google-workspace.md) · [Browser](05-browser-automation.md) · [Cron](06-cron-jobs.md) · [Multi-Agent](07-multi-agent.md) · [Profiles](11-agent-profiles.md) · [Models](08-model-selection.md) · [Memory](09-memory-system.md) · [Ops](10-operations.md)
+
+
 # 3 Agent Profiles — Tools & Workflows in Detail
 
 After optimizing from 7 agents down to 3, the system is organized by **domain of concern**:

@@ -1,5 +1,8 @@
 [🇬🇧 English](../../recipes/content-digest.md)
 
+[← Trang chủ](../index.md) · [Cài đặt](../01-installation.md) · [Kiến trúc](../02-architecture.md) · [Agent đầu tiên](../03-first-agent.md) · [Google](../04-google-workspace.md) · [Trình duyệt](../05-browser-automation.md) · [Cron](../06-cron-jobs.md) · [Multi-Agent](../07-multi-agent.md) · [Hồ sơ Agent](../11-agent-profiles.md) · [Model](../08-model-selection.md) · [Bộ nhớ](../09-memory-system.md) · [Vận hành](../10-operations.md)
+
+
 # Công thức: Tổng hợp Nội dung (Reddit + YouTube)
 
 Tự động tổng hợp bài Reddit và video YouTube hàng ngày, dịch và tóm tắt.

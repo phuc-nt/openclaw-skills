@@ -1,5 +1,8 @@
 [🇬🇧 English](../../recipes/expense-tracker.md)
 
+[← Trang chủ](../index.md) · [Cài đặt](../01-installation.md) · [Kiến trúc](../02-architecture.md) · [Agent đầu tiên](../03-first-agent.md) · [Google](../04-google-workspace.md) · [Trình duyệt](../05-browser-automation.md) · [Cron](../06-cron-jobs.md) · [Multi-Agent](../07-multi-agent.md) · [Hồ sơ Agent](../11-agent-profiles.md) · [Model](../08-model-selection.md) · [Bộ nhớ](../09-memory-system.md) · [Vận hành](../10-operations.md)
+
+
 # Công thức: Theo dõi Chi tiêu
 
 Ghi chi tiêu bằng ngôn ngữ tự nhiên qua tin nhắn Telegram.

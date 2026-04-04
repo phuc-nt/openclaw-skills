@@ -1,5 +1,8 @@
 [🇻🇳 Tiếng Việt](vi/08-model-selection.md)
 
+[← Home](index.md) · [Installation](01-installation.md) · [Architecture](02-architecture.md) · [First Agent](03-first-agent.md) · [Google](04-google-workspace.md) · [Browser](05-browser-automation.md) · [Cron](06-cron-jobs.md) · [Multi-Agent](07-multi-agent.md) · [Profiles](11-agent-profiles.md) · [Models](08-model-selection.md) · [Memory](09-memory-system.md) · [Ops](10-operations.md)
+
+
 # Model Selection
 
 Choose the right model for cost, quality, and reliability.
