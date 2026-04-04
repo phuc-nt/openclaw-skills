@@ -8,15 +8,13 @@ Hướng dẫn này được viết từ kinh nghiệm thực tế xây dựng v
 
 ## Bạn Sẽ Xây Dựng Gì
 
-Một hệ thống AI agent tự động hóa cuộc sống hàng ngày:
+3 AI agent tự động hóa cuộc sống, chia theo lĩnh vực quan tâm:
 
-- **Trợ lý Cá nhân** — phân loại email, quản lý lịch, chuẩn bị họp, theo dõi chi tiêu
-- **Tổng hợp Nội dung** — tự động tóm tắt Reddit, YouTube, Facebook bằng ngôn ngữ của bạn
-- **Agent Bộ nhớ** — bộ não thứ hai ghi nhớ mọi thứ bạn nói
-- **Theo dõi Sách** — tự động hóa Goodreads (đánh giá, review, theo dõi tiến độ đọc)
-- **Nhật ký Sức khỏe** — check-in hàng ngày với báo cáo hàng tuần
+- **Personal Agent** — phân loại email, lịch, chuẩn bị họp, chi tiêu, Goodreads, Typefully
+- **Research Agent** — nghiên cứu web (Crawl4AI), tổng hợp Reddit/YouTube/Facebook, viết phản biện
+- **Kioku Agent** — bạn đồng hành cảm xúc, check-in sức khỏe, bộ nhớ dài hạn (knowledge graph)
 
-Tất cả điều khiển qua Telegram. Tất cả chạy trên Mac của bạn.
+Tất cả điều khiển qua Telegram. Tất cả chạy trên Mac. Chi phí API ~$11/tháng.
 
 ## Cấu Trúc Hướng Dẫn
 
@@ -31,18 +29,18 @@ Tất cả điều khiển qua Telegram. Tất cả chạy trên Mac của bạn
 6. [Cron Jobs & Lập lịch](06-cron-jobs.md) — Tự động hóa workflow, gửi kết quả, xử lý lỗi
 
 ### Nâng Cao
-7. [Thiết kế Multi-Agent](07-multi-agent.md) — Khi nào tách vs gộp agent, routing
+7. [Thiết kế Multi-Agent](07-multi-agent.md) — Tách 3 agent theo lĩnh vực quan tâm
 8. [Hồ sơ 3 Agent](11-agent-profiles.md) — Chi tiết công cụ, workflow & diagram từng agent
-9. [Lựa chọn Model](08-model-selection.md) — Giá cả, benchmark, fallback chain
-9. [Hệ thống Bộ nhớ](09-memory-system.md) — Kioku-lite, tìm kiếm tri-hybrid, knowledge graph
-10. [Cẩm nang Vận hành](10-operations.md) — Debug, lỗi thường gặp, bảo trì
+9. [Lựa chọn Model](08-model-selection.md) — M2.7 thống nhất, fallback chain, model local
+10. [Hệ thống Bộ nhớ](09-memory-system.md) — Kioku-lite, tìm kiếm tri-hybrid, knowledge graph
+11. [Cẩm nang Vận hành](10-operations.md) — Debug, lỗi thường gặp, bảo trì
 
 ### Công Thức
-11. [Công thức: Bản tin Buổi sáng](recipes/morning-briefing.md)
-12. [Công thức: Phân loại Email](recipes/email-triage.md)
-13. [Công thức: Tổng hợp Nội dung](recipes/content-digest.md)
-14. [Công thức: Theo dõi Sách](recipes/book-tracker.md)
-15. [Công thức: Theo dõi Chi tiêu](recipes/expense-tracker.md)
+12. [Công thức: Bản tin Buổi sáng](recipes/morning-briefing.md)
+13. [Công thức: Phân loại Email](recipes/email-triage.md)
+14. [Công thức: Tổng hợp Nội dung](recipes/content-digest.md)
+15. [Công thức: Theo dõi Sách](recipes/book-tracker.md)
+16. [Công thức: Theo dõi Chi tiêu](recipes/expense-tracker.md)
 
 ---
 
