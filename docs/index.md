@@ -32,7 +32,8 @@ All controlled via Telegram. All running on your Mac.
 
 ### Advanced
 7. [Multi-Agent Design](07-multi-agent.md) — When to split vs merge agents, routing
-8. [Model Selection](08-model-selection.md) — Pricing, benchmarks, fallback chains
+8. [3 Agent Profiles](11-agent-profiles.md) — Detailed tools, workflows & diagrams for each agent
+9. [Model Selection](08-model-selection.md) — Pricing, benchmarks, fallback chains
 9. [Memory System](09-memory-system.md) — Kioku-lite, tri-hybrid search, knowledge graph
 10. [Operational Playbook](10-operations.md) — Debugging, common errors, maintenance
 

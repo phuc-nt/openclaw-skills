@@ -32,7 +32,8 @@ Tất cả điều khiển qua Telegram. Tất cả chạy trên Mac của bạn
 
 ### Nâng Cao
 7. [Thiết kế Multi-Agent](07-multi-agent.md) — Khi nào tách vs gộp agent, routing
-8. [Lựa chọn Model](08-model-selection.md) — Giá cả, benchmark, fallback chain
+8. [Hồ sơ 3 Agent](11-agent-profiles.md) — Chi tiết công cụ, workflow & diagram từng agent
+9. [Lựa chọn Model](08-model-selection.md) — Giá cả, benchmark, fallback chain
 9. [Hệ thống Bộ nhớ](09-memory-system.md) — Kioku-lite, tìm kiếm tri-hybrid, knowledge graph
 10. [Cẩm nang Vận hành](10-operations.md) — Debug, lỗi thường gặp, bảo trì
 
