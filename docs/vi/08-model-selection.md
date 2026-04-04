@@ -16,20 +16,36 @@ Chọn model phù hợp về chi phí, chất lượng, và độ tin cậy.
 | MiniMax M2.7 | OpenRouter | $0.30 | $1.20 | 204K | Tốt | Cân bằng chi phí/chất lượng |
 | Qwen3 235B | OpenRouter | $0.07 | $0.10 | 262K | Khá | Siêu rẻ |
 
-## Khuyến nghị: Chuỗi Fallback
+## Khuyến nghị: Thống nhất M2.7 cho Tất cả Agent
+
+Sau khi thử nhiều cấu hình, **một model cho tất cả agent** là đơn giản và tiết kiệm nhất:
 
 ```json
 "model": {
   "primary": "openrouter/minimax/minimax-m2.7",
   "fallbacks": [
     "openrouter/google/gemini-2.0-flash-001",
-    "openrouter/qwen/qwen3-235b-a22b-2507",
     "anthropic/claude-haiku-4-5"
   ]
 }
 ```
 
-**Lý do**: M2.7 rẻ hơn Haiku 3-4 lần với chất lượng tương đương. Nếu timeout, Gemini Flash tiếp nhận. Nếu OpenRouter sập hoàn toàn, Haiku (Anthropic trực tiếp) là lưới an toàn.
+Cả 3 agent (personal, research, kioku) dùng cùng chuỗi. M2.7 xử lý tốt tool calling, tiếng Việt, tuân theo SOUL.md cho mọi use case.
+
+**Tại sao không dùng model khác cho mỗi agent?** Đã test Claude Haiku cho research, Ollama local cho digest — chất lượng tăng nhẹ không đáng đổi lại độ phức tạp. M2.7 ở mức $0.30/$1.20 mỗi 1M token là điểm cân bằng tốt nhất.
+
+### Model Local (Tùy chọn)
+
+Cho vận hành offline/miễn phí, Ollama có thể làm primary:
+
+```json
+"model": {
+  "primary": "ollama/qwen3:4b",
+  "fallbacks": ["openrouter/minimax/minimax-m2.7"]
+}
+```
+
+**Lưu ý**: Model local chậm hơn 5-10 lần, có thể timeout với cron job phức tạp. Phù hợp cho chat đơn giản, không cho workflow nặng tool. Cần `OLLAMA_API_KEY` (giá trị bất kỳ) và `brew services start ollama`.
 
 ## Thiết lập OpenRouter
 

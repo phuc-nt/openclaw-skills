@@ -4,95 +4,94 @@
 
 Khi nào dùng một agent vs nhiều, và cách chúng giao tiếp.
 
-## Nguyên tắc: Bắt Đầu Với Một, Tách Khi Cần
+## Nguyên tắc: Tách Theo Mối Quan Tâm, Không Theo Tác Vụ
 
-**Bắt đầu**: Một agent `personal` làm mọi thứ.
+Đừng tạo agent riêng cho mỗi tác vụ. Thay vào đó, tách theo **lĩnh vực quan tâm**:
 
-**Tách khi**:
-- Agent có tính cách mâu thuẫn (trợ lý vs bạn tâm sự)
-- Context window đầy (quá nhiều skill được load)
-- Cần model khác nhau (rẻ cho tổng hợp, thông minh cho bộ nhớ)
-- Bạn muốn bot Telegram riêng cho mục đích khác nhau
+| Lĩnh vực | Agent | Xử lý gì |
+|---|---|---|
+| **Cuộc sống của tôi** | `personal` | Email, lịch, task, chi tiêu, sách — mọi thứ về *tôi* |
+| **Thế giới bên ngoài** | `research` | Nghiên cứu web, tổng hợp nội dung, Reddit/YouTube/Facebook — mọi thứ từ *internet* |
+| **Nội tâm** | `kioku` | Cảm xúc, check-in sức khỏe, ký ức — *tôi cảm thấy thế nào* |
 
-## Khuyến nghị: Kiến trúc 2 Agent
+## Khuyến nghị: Kiến trúc 3 Agent
 
-| Agent | Mục đích | Telegram Bot | Model |
-|---|---|---|---|
-| **personal** | Công việc hàng ngày, tự động hóa, tổng hợp | Bot A | Nhanh + rẻ (MiniMax M2.7, Gemini Flash) |
-| **memory** | Bộ não thứ hai, nhật ký cảm xúc, sức khỏe | Bot B | Thông minh + đồng cảm (Claude Haiku) |
+| Agent | Mục đích | Telegram Bot | Model | Skills |
+|---|---|---|---|---|
+| **personal** | Quản lý cuộc sống hàng ngày | Personal Bot | MiniMax M2.7 | gws-* (15), goodreads, typefully |
+| **research** | Nội dung internet & nghiên cứu | Research Bot | MiniMax M2.7 | crawl4ai, reddit, youtube, facebook |
+| **kioku** | Bộ nhớ & bạn đồng hành cảm xúc | Kioku Bot | MiniMax M2.7 | kioku-lite CLI |
 
-### Tại Sao Hiệu Quả
+### Tại Sao 3 Agent?
 
-- **personal** xử lý tác vụ khối lượng lớn, rủi ro thấp (phân loại email, lịch, tổng hợp)
-- **memory** xử lý tác vụ ít nhưng quan trọng (ký ức, suy ngẫm)
-- Cron job dùng **session riêng biệt** → không ảnh hưởng ngữ cảnh chat
-- Giao tiếp giữa agent qua CLI: personal gọi `kioku-lite search` khi cần
+- **personal** xử lý tác vụ cá nhân khối lượng lớn (email, lịch, chi tiêu)
+- **research** xử lý nội dung từ internet (digest, nghiên cứu sâu, phân tích bài viết)
+- **kioku** xử lý ngữ cảnh cảm xúc — không nên trộn với agent hướng tác vụ
+- Mỗi agent có SOUL.md tập trung → tuân theo hướng dẫn tốt hơn
+- Cron job route đến đúng agent theo lĩnh vực
+
+### Lộ trình Phát triển
+
+```
+Giai đoạn 1: 1 agent (personal làm mọi thứ)
+Giai đoạn 2: 2 agent (tách bộ nhớ → kioku)
+Giai đoạn 3: 3 agent (tách nội dung internet → research)  ← hiện tại
+```
+
+## Routing Cron Job
+
+Job route đến agent sở hữu lĩnh vực đó:
+
+```json
+// Personal agent — cron "cuộc sống của tôi"
+morning-briefing → personal (lịch + email + tasks)
+email-triage → personal
+prep-next-meeting → personal
+calendar-conflict → personal
+weekly-review → personal
+
+// Research agent — cron "nội dung internet"
+reddit-digest → research
+youtube-digest → research
+fb-group-monitor → research
+
+// Kioku agent — cron "nội tâm"
+health-checkin → kioku
+```
 
 ## Giao tiếp Giữa Agent
 
-Agent không nói chuyện trực tiếp. Thay vào đó, chúng dùng chung công cụ:
+Agent chia sẻ công cụ, không chia sẻ cuộc hội thoại:
 
 ```bash
-# Agent personal truy vấn dữ liệu agent memory
+# Personal truy vấn bộ nhớ
 kioku-lite search "cuộc họp với khách hàng" --limit 5 --entities
 
-# Agent memory không truy cập Gmail/Calendar của personal
-# (theo thiết kế — tách biệt mối quan tâm)
-```
+# Research lưu phát hiện thú vị
+kioku-lite save --content "..." --tags "research,ai"
 
-Trong SOUL.md của agent personal:
-```markdown
-## Liên agent: Memory (kioku-lite)
-Khi cần ngữ cảnh quá khứ, truy vấn:
-kioku-lite search "query" --limit 10 --entities
+# Research và kioku KHÔNG truy cập Gmail/Calendar của personal
+# (theo thiết kế — tách biệt mối quan tâm)
 ```
 
 ## Routing: Một Bot Một Agent
 
 ```json
 {
-  "channels": {
-    "telegram": {
-      "accounts": {
-        "assistant": { "botToken": "BOT_A_TOKEN" },
-        "memory": { "botToken": "BOT_B_TOKEN" }
-      }
-    }
-  },
   "bindings": [
-    { "accountId": "assistant", "agentId": "personal" },
-    { "accountId": "memory", "agentId": "kioku" }
+    { "accountId": "personal", "agentId": "personal" },
+    { "accountId": "research", "agentId": "research" },
+    { "accountId": "kioku", "agentId": "kioku" }
   ]
 }
 ```
 
-Người dùng nhắn Bot A → agent personal. Nhắn Bot B → agent memory.
+## Anti-Pattern: Quá Nhiều hoặc Quá Ít
 
-## Cron Job: Tất cả trên Personal
+**Đừng** tạo 5+ agent (một cho mỗi tác vụ). Vấn đề: UX khó hiểu, quy tắc trùng lặp, chi phí nhân lên.
 
-Ngay cả job tổng hợp (Reddit, YouTube) cũng chạy trên agent `personal` — chúng dùng session riêng biệt nên không ảnh hưởng chat. Chỉ `health-checkin` chạy trên agent memory (cần ngữ cảnh cảm xúc).
+**Đừng** nhồi mọi thứ vào 1 agent. Vấn đề: SOUL.md quá lớn, tính cách mâu thuẫn, context window đầy.
 
-```json
-// Tất cả đi đến agent personal
-morning-briefing → personal (isolated)
-email-triage → personal (isolated)
-reddit-digest → personal (isolated)
-weekly-review → personal (isolated)
-
-// Cái này đi đến agent memory
-health-checkin → kioku (isolated)
-```
-
-## Anti-Pattern: Quá Nhiều Agent
-
-**Đừng** tạo agent riêng cho: email, lịch, sách, reddit, youtube.
-
-Vấn đề:
-- 5+ bot Telegram = UX khó hiểu
-- Quy tắc SOUL.md trùng lặp giữa các agent
-- Chi phí model nhân lên (mỗi agent load đầy đủ context)
-- Quản lý cron job trở nên phức tạp
-
-**Thay vào đó**: Một agent personal với nhiều skill, dùng cron session riêng biệt.
+**Điểm cân bằng**: 3 agent tách theo lĩnh vực quan tâm.
 
 ## Tiếp theo: [Lựa chọn Model →](08-model-selection.md)

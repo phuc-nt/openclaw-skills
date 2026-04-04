@@ -16,20 +16,36 @@ Choose the right model for cost, quality, and reliability.
 | MiniMax M2.7 | OpenRouter | $0.30 | $1.20 | 204K | Good | Balance cost/quality |
 | Qwen3 235B | OpenRouter | $0.07 | $0.10 | 262K | Decent | Ultra-cheap |
 
-## Recommended: Fallback Chain
+## Recommended: Unified M2.7 for All Agents
+
+After testing multiple configurations, **one model for all agents** is the simplest and most cost-effective:
 
 ```json
 "model": {
   "primary": "openrouter/minimax/minimax-m2.7",
   "fallbacks": [
     "openrouter/google/gemini-2.0-flash-001",
-    "openrouter/qwen/qwen3-235b-a22b-2507",
     "anthropic/claude-haiku-4-5"
   ]
 }
 ```
 
-**Why**: M2.7 is 3-4x cheaper than Haiku with comparable quality. If it times out, Gemini Flash picks up. If OpenRouter is down entirely, Haiku (Anthropic direct) is the safety net.
+All 3 agents (personal, research, kioku) use the same chain. M2.7 handles tool calling, Vietnamese, SOUL.md following well enough for all use cases.
+
+**Why not different models per agent?** Tested Claude Haiku for research, Ollama local for digest — marginal quality gains didn't justify the complexity. M2.7 at $0.30/$1.20 per 1M tokens is the sweet spot.
+
+### Local Models (Optional)
+
+For offline/cost-zero operation, Ollama can serve as primary:
+
+```json
+"model": {
+  "primary": "ollama/qwen3:4b",
+  "fallbacks": ["openrouter/minimax/minimax-m2.7"]
+}
+```
+
+**Caveat**: Local models are 5-10x slower and may timeout on complex cron jobs. Best used for simple chat, not tool-heavy workflows. Requires `OLLAMA_API_KEY` env var (any dummy value) and `brew services start ollama`.
 
 ## OpenRouter Setup
 

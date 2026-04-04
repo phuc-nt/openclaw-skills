@@ -142,12 +142,14 @@ Default timeout may be too short — job gets aborted silently.
 Jobs run sequentially in the cron lane. If 5 jobs trigger at similar times, later jobs wait. Stagger schedules:
 
 ```
-7:00 — Morning briefing
-7:15 — Calendar conflict
-7:30 — Health check-in
-9:00 — Email triage
-10:00 — Reddit digest
+7:00 — Morning briefing      → personal
+7:15 — Calendar conflict      → personal
+7:30 — Health check-in        → kioku
+9:00 — Email triage           → personal
+10:00 — Reddit digest         → research
 ```
+
+**Note**: In a 3-agent setup, route digest cron jobs to the `research` agent and personal tasks to `personal`. Jobs on different agents can run in parallel.
 
 ## Monitoring Cron Jobs
 

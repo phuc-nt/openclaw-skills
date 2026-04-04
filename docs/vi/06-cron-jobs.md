@@ -142,12 +142,14 @@ Timeout mặc định có thể quá ngắn — job bị hủy âm thầm.
 Job chạy tuần tự trong cron lane. Nếu 5 job kích hoạt cùng lúc, job sau phải đợi. Phân bổ lịch:
 
 ```
-7:00 — Bản tin buổi sáng
-7:15 — Xung đột lịch
-7:30 — Check-in sức khỏe
-9:00 — Phân loại email
-10:00 — Tổng hợp Reddit
+7:00 — Bản tin buổi sáng      → personal
+7:15 — Xung đột lịch          → personal
+7:30 — Check-in sức khỏe      → kioku
+9:00 — Phân loại email        → personal
+10:00 — Tổng hợp Reddit       → research
 ```
+
+**Lưu ý**: Với kiến trúc 3 agent, route cron digest sang agent `research`, tác vụ cá nhân sang `personal`. Job trên agent khác nhau có thể chạy song song.
 
 ## Giám sát Cron Job
 
